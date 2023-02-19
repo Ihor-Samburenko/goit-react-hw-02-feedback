@@ -3,6 +3,7 @@ import { Component } from 'react';
 import Section from './Section/Section';
 import FeedbackOptions from './FeedbackOptions/FeedbackOptions';
 import Statistics from './Statistics/Statistics';
+import Notification from './Notification/Notification';
 
 import css from './Vote.module.css';
 
@@ -51,15 +52,19 @@ class Vote extends Component {
         <Section title="Leave your feadback">
           <FeedbackOptions onClick={this.handleOnClick} />
         </Section>
-        <Section title="Statictics">
-          <Statistics
-            total={total}
-            positiveFeadBack={positiveFeadBack}
-            badVote={badVote}
-            neutralVote={neutralVote}
-            goodVote={goodVote}
-          />
-        </Section>
+        {this.calcTotal() ? (
+          <Section title="Statictics">
+            <Statistics
+              total={total}
+              positiveFeadBack={positiveFeadBack}
+              badVote={badVote}
+              neutralVote={neutralVote}
+              goodVote={goodVote}
+            />
+          </Section>
+        ) : (
+          <Notification message="There is no feedback" />
+        )}
       </div>
     );
   }
