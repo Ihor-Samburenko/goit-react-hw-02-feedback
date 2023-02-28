@@ -50,7 +50,10 @@ class Vote extends Component {
     return (
       <div className={css.wrapper}>
         <Section title="Leave your feadback">
-          <FeedbackOptions onClick={this.handleOnClick} />
+          <FeedbackOptions
+            onClick={this.handleOnClick}
+            options={Object.keys(this.state)}
+          />
         </Section>
         {this.calcTotal() ? (
           <Section title="Statictics">
